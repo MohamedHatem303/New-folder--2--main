@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Solve linear Systems</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container border border-2 border-black rounded-2 px-3 my-2">
+      <nav class="my-2 py-3 px-2 border border-2 border-black rounded-2">
+        <div class="d-flex justify-content-center">
+          <div>
+            <h3>Solve linear system</h3>
+          </div>
+        </div>
+      </nav>
+      <div
+        id="model"
+        class="container-mini border border-2 border-black rounded-2 d-block"
+      >
+        <section class="container">
+          <div class="d-flex justify-content-center my-4">
+            <h3
+              class="text-center border border-2 border-black rounded-2 my-2 p-2"
+            >
+              Size of Augmented Matrix
+            </h3>
+          </div>
+          <div class="my-4 d-flex justify-content-center">
+            <table>
+              <tr>
+                <td>
+                  <label for="Equations"
+                    ><h3 class="ms-5 ps-5">Numper Of Equations</h3></label
+                  >
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    id="Equations"
+                    class="border border-2 border-black rounded-2"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Variables"
+                    ><h3 class="ms-5 ps-5">Numper Of Variables</h3></label
+                  >
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    id="Variables"
+                    class="border border-2 border-black rounded-2"
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <center>
+            <div
+              class="container-mini"
+              style="height: 2px; background-color: #000; margin: 10px 0"
+            ></div>
+          </center>
+          <table class="table container-mini">
+            <tr>
+              <td>
+                <label for="Gaussian-r"><h4>Gaussian Elimination</h4></label>
+              </td>
+              <td class="s-td">
+                <input
+                  type="radio"
+                  id="Gaussian-r"
+                  name="choice"
+                  class="border border-2 border-black"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="Jordan-r"><h4>Gauss–Jordan Elimination</h4></label>
+              </td>
+              <td class="s-td">
+                <input type="radio" id="Jordan-r" name="choice" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="Inverse-r"><h4>Inverse Function</h4></label>
+              </td>
+              <td class="s-td">
+                <input type="radio" id="Inverse-r" name="choice" />
+              </td>
+            </tr>
+          </table>
+          <div class="d-flex justify-content-center my-4">
+            <button
+              id="modalSubmit"
+              type="button"
+              class="text-center border border-2 border-black rounded-2 my-2 p-2 bg-black"
+              onclick="Switch()"
+              disabled
+            >
+              <h6 class="text-white">Submet</h6>
+            </button>
+          </div>
+        </section>
+      </div>
+      <main id="main" class="d-none">
+        <section>
+          <div>
+            <h4>Augmented Matrix</h4>
+          </div>
+          <div class="d-flex justify-content-center">
+            <ul id="matrix" class="list-unstyled text-center"></ul>
+          </div>
+          <div class="d-flex justify-content-center my-2">
+            <button
+              onclick="back()"
+              class="border border-2 border-black rounded-2 text-center mx-2 p-1 bg-white"
+            >
+              Edit Size
+            </button>
+            <button
+              id="startButton"
+              onclick="startSolve()"
+              class="border border-2 border-black rounded-2 text-center mx-2 p-1 bg-black text-white"
+            >
+              Start Solve
+            </button>
+            <button
+              onclick="clearValues()"
+              class="border border-2 border-black rounded-2 text-center mx-2 p-1 bg-white"
+            >
+              CLear Values
+            </button>
+          </div>
+        </section>
+        <section id="stepsContainer"></section>
+        <section id="finalSection">
+          <div class="border border-2 border-black rounded-2 my-2">
+            <div>
+              <div class="text-center my-5">
+                <h3 id="finalFormLabel"></h3>
+              </div>
+              <div class="d-flex justify-content-center">
+                <ul id="finalMatrix" class="list-unstyled text-center"></ul>
+              </div>
+            </div>
+            <div id="variablesList" class="container-mini"></div>
+          </div>
+        </section>
+      </main>
+      <footer class="border border-2 border-black rounded-2 my-3">
+        <div class="container py-2">
+          <div class="row text-center text-md-start justify-content-between">
+            <div class="col-12 col-md-4 mb-3">
+              <h5 class="fw-bold">Created By Students :</h5>
+
+              <h6 class="ps-md-4 mb-0">
+                <strong>Std.</strong> Mohamed Hatem Mohamed
+              </h6>
+              <span class="ps-md-4 d-block"
+                >&nbsp;&nbsp;&nbsp;&nbsp;<strong>Sec.</strong> 25</span
+              >
+
+              <h6 class="ps-md-4 mb-0 mt-2">
+                <strong>Std.</strong> Khaled Tareq Elsayed
+              </h6>
+              <span class="ps-md-4 d-block"
+                >&nbsp;&nbsp;&nbsp;&nbsp;<strong>Sec.</strong> 9</span
+              >
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <h5 class="fw-bold">Managed by :</h5>
+              <h6 class="ps-md-4"><strong>Dr.</strong> Sherif Barakat</h6>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+              <h5 class="fw-bold">Supervised by :</h5>
+              <h6 class="ps-md-4"><strong>Eng.</strong> Normin Lotfy</h6>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

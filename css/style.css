@@ -1,0 +1,67 @@
+ul li input{
+    width: 5%;
+    margin: 0.5%;
+}
+.container-mini{
+    width: 60%;
+    margin: auto;
+}
+.center{
+    margin-left: 130px !important;
+}
+@media (max-width: 768px){
+    .container-mini{
+        width: 100%;
+    }
+}
+.container-mini input{
+    width: 30%;
+}
+.error-border {
+    border: 3px solid red !important;
+}
+/* make matrix inputs a bit wider so negative sign doesn't get hidden */
+#matrix input[type="number"],
+#finalMatrix input[type="text"],
+#stepsContainer input[type="text"] {
+  min-width: 62px;      /* small increase, adjust if you want wider */
+  width: 62px;
+  box-sizing: border-box;
+  padding-left: 6px;    /* give some inner space for minus sign */
+  padding-right: 6px;
+  text-align: center;
+}
+/* remove number input spinners - Chrome, Safari, Edge */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* remove spinners - Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* optional placeholder styling */
+input::placeholder {
+    color: #9b9b9b;
+    font-weight: 600;
+    opacity: 1;
+}
+.table>:not(caption)>*>* {
+    border: 0;
+}
+.s-td{
+    width: 20%;
+}
+input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    border: 3px solid #000 !important; 
+  }
+
+  input[type="radio"]:checked {
+    accent-color: #000000;
+  }
