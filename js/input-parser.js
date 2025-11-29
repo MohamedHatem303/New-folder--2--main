@@ -2,27 +2,30 @@
 import { setMatrixInputsDisabled } from './matrix-utils.js';
 
 // generates the editable matrix inputs (rows x (vars+1))
-export function generateMatrix(rows, vars) {
+export function generateMatrix(rows, vars, noAugmented = false) {
+    
     const matrix = document.getElementById("matrix");
     if (!matrix) return;
     matrix.innerHTML = "";
+
+    const cols = noAugmented ? vars : (vars + 1);
 
     for (let i = 0; i < rows; i++) {
         const li = document.createElement("li");
         li.className = "d-flex justify-content-center mb-2";
 
-        for (let j = 0; j < vars + 1; j++) {
+        for (let j = 0; j < cols; j++) {
             const inp = document.createElement("input");
             inp.type = "number";
             inp.className = "border border-2 border-black rounded-2 mx-1 p-1 text-center";
             inp.dataset.r = i;
             inp.dataset.c = j;
 
-            // placeholder: a_ij for coefficient columns, b_i for RHS column
-            if (j < vars) {
-                inp.placeholder = `a${i+1}${j+1}`; // a11, a12, ...
+            // placeholder: a_ij for coefficient columns, b_i for RHS column (only if augmented)
+            if (!noAugmented && j === cols - 1) {
+                inp.placeholder = `b${i+1}`; // RHS
             } else {
-                inp.placeholder = `b${i+1}`; // b1, b2, ...
+                inp.placeholder = `a${i+1}${j+1}`; // coefficients
             }
 
             // keyboard navigation and prevent arrow-up/down from changing value
