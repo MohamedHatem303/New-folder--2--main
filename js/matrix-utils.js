@@ -18,7 +18,7 @@ export function fmtNumberNoTrailing(x) {
     if (x === null || x === undefined) return '';
     if (typeof x === 'string') return x;
     if (Number.isInteger(x)) return x.toString();
-    return parseFloat(x.toFixed(6)).toString();
+    return parseFloat(x.toFixed(1)).toString();
 }
 
 // DOM-related small helpers — kept here so other modules can import
