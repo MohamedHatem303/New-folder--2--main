@@ -243,14 +243,19 @@ export function Switch() {
     const prevEdit = document.getElementById('editSizeOnlyBtn');
     if (prevEdit) prevEdit.remove();
 
-    // try to locate the ORIGINAL Edit Size button (heuristic: has onclick that calls back())
-    let originalEditBtn = null;
-    document.querySelectorAll('button').forEach(b => {
-        try {
-            const onclick = b.getAttribute && b.getAttribute('onclick');
-            if (onclick && onclick.includes('back(')) originalEditBtn = b;
-        } catch (e) {}
-    });
+   // try to locate the ORIGINAL Edit Size button (heuristic: has onclick that calls back() OR visible text "Edit Size")
+let originalEditBtn = null;
+document.querySelectorAll('button').forEach(b => {
+  try {
+    const onclick = b.getAttribute && b.getAttribute('onclick');
+    const text = (b.textContent || b.value || '').trim().toLowerCase();
+    // accept either explicit back() onclick or button text "edit size"
+    if ((onclick && onclick.includes('back(')) || text === 'edit size') {
+      originalEditBtn = b;
+    }
+  } catch (e) {}
+});
+
 
     // -------- Case: Inverse chosen but matrix is rectangular --------
     if (methodId === 'Inverse-r' && eq !== vars) {
