@@ -1,4 +1,3 @@
-// constants.js
 export const MAX = 15;
 
 export const variableNames = [

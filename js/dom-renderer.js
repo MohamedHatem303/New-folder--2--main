@@ -1,4 +1,3 @@
-// dom-renderer.js
 import { fmtNumberNoTrailing } from './matrix-utils.js';
 import { variableNames } from './constants.js';
 
@@ -51,7 +50,6 @@ export function renderVerboseSteps(steps) {
 
         const cols = mat[0].length;
 
-        // ========= INVERSE ONLY =========
         if (s._isInverse && cols % 2 === 0) {
             const mid = cols / 2;
 
@@ -60,7 +58,6 @@ export function renderVerboseSteps(steps) {
             hWrapper.style.gap = "40px";
             hWrapper.style.width = "100%";
 
-            // LEFT BLOCK (A)
             const leftBlock = document.createElement("div");
             leftBlock.style.display = "flex";
             leftBlock.style.flexDirection = "column";
@@ -88,7 +85,6 @@ export function renderVerboseSteps(steps) {
             });
             leftBlock.appendChild(leftUl);
 
-            // RIGHT BLOCK (I)
             const rightBlock = document.createElement("div");
             rightBlock.style.display = "flex";
             rightBlock.style.flexDirection = "column";
@@ -125,7 +121,6 @@ export function renderVerboseSteps(steps) {
             return;
         }
 
-        // ========= NORMAL — NO SPLIT =========
         const ul = document.createElement("ul");
         ul.className = "list-unstyled";
 

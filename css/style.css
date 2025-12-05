@@ -20,31 +20,25 @@ ul li input{
 .error-border {
     border: 3px solid red !important;
 }
-/* make matrix inputs a bit wider so negative sign doesn't get hidden */
 #matrix input[type="number"],
 #finalMatrix input[type="text"],
 #stepsContainer input[type="text"] {
-  min-width: 62px;      /* small increase, adjust if you want wider */
+  min-width: 62px;
   width: 62px;
   box-sizing: border-box;
-  padding-left: 6px;    /* give some inner space for minus sign */
+  padding-left: 6px;
   padding-right: 6px;
   text-align: center;
 }
-/* remove number input spinners - Chrome, Safari, Edge */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-/* remove spinners - Firefox */
 input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
-
-/* optional placeholder styling */
 input::placeholder {
     color: #9b9b9b;
     font-weight: 600;
@@ -65,47 +59,34 @@ input[type="radio"] {
   input[type="radio"]:checked {
     accent-color: #000000;
   }
-/* ONLY style augmented pairs inside a container with class .augmented-pair */
 .augmented-pair > .aug-left-column {
   border-right: 2px solid #000;
   padding-right: 12px;
   margin-right: 8px;
   display: inline-block;
 }
-
-/* optional right column class to keep symmetry (no border) */
 .augmented-pair > .aug-right-column {
   display: inline-block;
   padding-left: 12px;
 }
-
-/* ensure the two ULs align vertically and inputs don't collapse,
-   but only when they are inside an augmented-pair wrapper */
 .augmented-pair .aug-left-column li,
 .augmented-pair .aug-right-column li {
-  min-height: 36px; /* keep consistent row height */
+  min-height: 36px;
 }
 input {
   text-align: center;
 }
-/* إجبار A و I يكونوا جنب بعض حتى على أصغر موبايل */
 @media (max-width: 600px) {
-
-  /* الحاوية الرئيسية اللي جوا steps */
   #stepsContainer .d-flex.justify-content-center {
       flex-direction: row !important;
       flex-wrap: nowrap !important;
       gap: 4px !important;
   }
-
-  /* الحاويات الداخلية (A و I) — قفل العمود */
   #stepsContainer .d-flex.justify-content-center > div {
       flex-direction: column !important;
       margin: 0 !important;
       padding: 0 !important;
   }
-
-  /* inputs صغيرة جدًا */
   #stepsContainer input[type="text"],
   #finalMatrix input[type="text"] {
       min-width: 26px !important;

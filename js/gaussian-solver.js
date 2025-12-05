@@ -1,7 +1,5 @@
-// gaussian-solver.js
 import { cloneMatrix, fmtNumberNoTrailing, approxZero } from './matrix-utils.js';
 
-// Gaussian elimination (medium verbosity) returning steps, echelon form and singular flag
 export function gaussianEliminationMedium(inputMat) {
     const mat = inputMat.map(r => r.slice());
     const rows = mat.length;
@@ -57,7 +55,6 @@ export function gaussianEliminationMedium(inputMat) {
                 if (Math.abs(mat[r0][c]) < 1e-12) mat[r0][c] = 0;
             }
 
-            // format elimination string simplified for k=±1
             const k = -factor;
             let mathStr;
             if (Math.abs(k - 1) < 1e-12) mathStr = `(R${r0+1} + R${pivotRow} => R${r0+1})`;
@@ -91,7 +88,6 @@ export function gaussianEliminationMedium(inputMat) {
     return {steps, echelon: mat, singular};
 }
 
-// back substitution
 export function backSubstitute(mat) {
     const rows = mat.length;
     const cols = mat[0].length;

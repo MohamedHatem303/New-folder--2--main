@@ -1,7 +1,5 @@
-// input-parser.js
 import { setMatrixInputsDisabled } from './matrix-utils.js';
 
-// generates the editable matrix inputs (rows x (vars+1))
 export function generateMatrix(rows, vars, noAugmented = false) {
     
     const matrix = document.getElementById("matrix");
@@ -21,18 +19,15 @@ export function generateMatrix(rows, vars, noAugmented = false) {
             inp.dataset.r = i;
             inp.dataset.c = j;
 
-            // placeholder: a_ij for coefficient columns, b_i for RHS column (only if augmented)
             if (!noAugmented && j === cols - 1) {
-                inp.placeholder = `b${i+1}`; // RHS
+                inp.placeholder = `b${i+1}`;
             } else {
-                inp.placeholder = `a${i+1}${j+1}`; // coefficients
+                inp.placeholder = `a${i+1}${j+1}`;
             }
 
-            // keyboard navigation and prevent arrow-up/down from changing value
             inp.addEventListener("keydown", matrixInputKeydown);
             inp.addEventListener("keydown", function(e) {
                 if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                    // prevent the default number increment/decrement on arrow keys
                     e.preventDefault();
                 }
             });
@@ -47,7 +42,6 @@ export function generateMatrix(rows, vars, noAugmented = false) {
     matrix.addEventListener("input", matrixInputHandler);
 }
 
-// handler that updates step matrices and keeps UI in sync
 export function matrixInputHandler() {
     const matrix = document.getElementById("matrix");
     if (!matrix) return;
@@ -58,13 +52,11 @@ export function matrixInputHandler() {
     const rows = rowsEls.length;
     const cols = rowsEls[0].querySelectorAll("input").length;
 
-    // global hook that app.js will provide
     if (typeof window.__fillStepMatrices === 'function') {
         window.__fillStepMatrices(rows, cols - 1);
     }
 }
 
-// keyboard navigation attached to each matrix input
 export function matrixInputKeydown(e) {
     const key = e.key;
     const target = e.target;
@@ -107,7 +99,6 @@ export function matrixInputKeydown(e) {
     }
 }
 
-// read the main matrix inputs and return numeric matrix or null if invalid
 export function readMainMatrix() {
     const matrixEl = document.getElementById("matrix");
     if (!matrixEl) return null;
