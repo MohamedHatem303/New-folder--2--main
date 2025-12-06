@@ -217,28 +217,11 @@ export function Switch() {
     const startBtn = findStartButton && typeof findStartButton === 'function' ? findStartButton() : document.getElementById('startButton');
     const clearBtn = document.querySelector('button[onclick="clearValues()"]');
 
-    document.querySelectorAll('.edit-size-btn').forEach(b => b.remove());
-    const prevEdit = document.getElementById('editSizeOnlyBtn');
-    if (prevEdit) prevEdit.remove();
-
-    let originalEditBtn = null;
-    document.querySelectorAll('button').forEach(b => {
-      try {
-        const onclick = b.getAttribute && b.getAttribute('onclick');
-        const text = (b.textContent || b.value || '').trim().toLowerCase();
-        if ((onclick && onclick.includes('back(')) || text === 'edit size') {
-          originalEditBtn = b;
-        }
-      } catch (e) {}
-    });
-
     if (methodId === 'Inverse-r' && eq !== vars) {
         if (matrixEl) matrixEl.innerHTML = "";
 
         if (startBtn) startBtn.style.display = "none";
         if (clearBtn) clearBtn.style.display = "none";
-
-        if (originalEditBtn) originalEditBtn.style.display = "none";
 
         if (varsList) {
             const existingMsg = varsList.querySelector('.rect-inverse-msg');
@@ -254,38 +237,6 @@ export function Switch() {
               <p style="margin:0 0 12px 0;">The matrix must be square (n × n). Please go back and adjust the dimensions.</p>
             `;
             varsList.appendChild(msg);
-
-            if (originalEditBtn) {
-                const clone = originalEditBtn.cloneNode(true);
-                clone.id = 'editSizeOnlyBtn';
-                clone.classList.add('edit-size-btn');
-
-                clone.onclick = function(e) {
-                    e.preventDefault();
-                    location.reload();
-                };
-
-                const wrapper = document.createElement('div');
-                wrapper.style.textAlign = 'center';
-                wrapper.style.marginTop = '8px';
-                wrapper.appendChild(clone);
-                varsList.appendChild(wrapper);
-                clone.style.display = "";
-            } else {
-                const btn = document.createElement('button');
-                btn.id = 'editSizeOnlyBtn';
-                btn.className = 'btn btn-secondary edit-size-btn';
-                btn.textContent = 'Edit Size';
-                btn.onclick = function(e) {
-                    e.preventDefault();
-                    location.reload();
-                };
-                const wrapper = document.createElement('div');
-                wrapper.style.textAlign = 'center';
-                wrapper.style.marginTop = '8px';
-                wrapper.appendChild(btn);
-                varsList.appendChild(wrapper);
-            }
         }
 
         const stepsContainer = document.getElementById("stepsContainer");
@@ -300,14 +251,6 @@ export function Switch() {
 
     if (startBtn) startBtn.style.display = "";
     if (clearBtn) clearBtn.style.display = "";
-
-    document.querySelectorAll('.edit-size-btn').forEach(b => b.remove());
-    const prevById2 = document.getElementById('editSizeOnlyBtn');
-    if (prevById2) prevById2.remove();
-
-    if (originalEditBtn) {
-        originalEditBtn.style.display = "";
-    }
 
     try {
         generateMatrix(eq, vars, noAugmented);
@@ -340,10 +283,6 @@ export function back() {
 
     const clearBtn = document.querySelector('button[onclick="clearValues()"]');
     if (clearBtn) clearBtn.style.display = "";
-
-    document.querySelectorAll('.edit-size-btn').forEach(b => b.remove());
-    const prevEdit = document.getElementById('editSizeOnlyBtn');
-    if (prevEdit) prevEdit.remove();
 
     document.querySelectorAll('button').forEach(b => {
         try {
